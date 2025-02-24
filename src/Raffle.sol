@@ -115,7 +115,11 @@ contract Raffle is VRFConsumerBaseV2Plus {
         s_vrfCoordinator.requestRandomWords(request);
     }
 
-    function fulfillRandomWords(uint256, /* requestId */ uint256[] calldata randomWords) internal override {
+    function fulfillRandomWords(
+        uint256,
+        /* requestId */
+        uint256[] calldata randomWords
+    ) internal override {
         // Checks (Conditionals)
 
         // Effects (Internal contract change)
@@ -141,5 +145,9 @@ contract Raffle is VRFConsumerBaseV2Plus {
 
     function getRaffleState() external view returns (RaffleState) {
         return s_raffleState;
+    }
+
+    function getPlayer(uint256 indexOfPlayer) external view returns (address) {
+        return s_players[indexOfPlayer];
     }
 }
